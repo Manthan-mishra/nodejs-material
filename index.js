@@ -1,21 +1,16 @@
-// creating server
-import http from "http";
-import { attendance } from "./features.js";
+import express from "express";
 
-// console.log(gfName);
+const app = express();
+const PORT = 5000;
 
-const server = http.createServer((req, res) => {
-  if (req.url === "/") {
-    res.end(`<h1>Your attendance is ${attendance()}%</h1>`);
-  } else if (req.url === "/about") {
-    res.end("<h1>About Page</h1>");
-  } else if (req.url === "/contact") {
-    res.end("<h1>Contact Page</h1>");
-  } else {
-    res.end("<h1>Page Not found</h1>");
-  }
+app.get("/", (req, res) => {
+  res.sendStatus(401);
 });
 
-server.listen(5000, () => {
-  console.log("server is working");
+app.get("/about", (req, res) => {
+  res.send("<h1>This is About Page</h1>");
+});
+
+app.listen(PORT, () => {
+  console.log(`running on port ${PORT}`);
 });
